@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualiseur de Tri</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Visualiseur d'algorithmes de tri</h1>
+
+  <div class="controls">
+    <div class="algo-buttons">
+      <button class="algo-btn active" onclick="setAlgo('bubble',this)">Bubble</button>
+      <button class="algo-btn" onclick="setAlgo('selection',this)">Selection</button>
+      <button class="algo-btn" onclick="setAlgo('insertion',this)">Insertion</button>
+      <button class="algo-btn" onclick="setAlgo('quick',this)">Quick</button>
+      <button class="algo-btn" onclick="setAlgo('merge',this)">Merge</button>
+    </div>
+    <div class="action-buttons">
+      <button onclick="init()">↻ Nouveau</button>
+      <button id="startBtn" onclick="startSort()">▶ Lancer</button>
+      <button id="stopBtn" onclick="stopSort()" disabled>⏸ Pause</button>
+    </div>
+  </div>
+
+  <div class="sliders">
+    <label>Vitesse
+      <input type="range" min="1" max="5" value="3" id="spd"
+             oninput="document.getElementById('spdV').textContent=this.value">
+      <span id="spdV">3</span>
+    </label>
+    <label>Taille
+      <input type="range" min="4" max="16" value="10" id="sz"
+             oninput="onSz(this.value)">
+      <span id="szV">10</span>
+    </label>
+  </div>
+
+  <div id="info">Choisissez un algorithme puis cliquez Lancer.</div>
+
+  <!-- Zone où les cercles se déplacent -->
+  <div class="arena" id="arena"></div>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-label">Comparaisons</span><span class="stat-val" id="sc">0</span></div>
+    <div class="stat"><span class="stat-label">Échanges</span><span class="stat-val" id="ss">0</span></div>
+    <div class="stat"><span class="stat-label">Étape</span><span class="stat-val" id="se">0</span></div>
+    <div class="stat"><span class="stat-label">Statut</span><span class="stat-val" id="st">En attente</span></div>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><span class="dot" style="background:#7F77DD"></span>Normal</div>
+    <div class="leg"><span class="dot" style="background:#FCEBEB;border-color:#E24B4A"></span>Comparaison</div>
+    <div class="leg"><span class="dot" style="background:#FAEEDA;border-color:#EF9F27"></span>Échange</div>
+    <div class="leg"><span class="dot" style="background:#E1F5EE;border-color:#1D9E75"></span>Trié</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
